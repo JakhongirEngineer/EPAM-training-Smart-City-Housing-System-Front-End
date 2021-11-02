@@ -8,3 +8,5 @@ function useToggle(initialValue = false) {
   };
   return [state, toggle];
 }
+
+export default useToggle;
