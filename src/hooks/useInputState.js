@@ -14,4 +14,4 @@ function useInputState(initialValue) {
   return [value, update, reset];
 }
 
-export default useInputState;
+export { useInputState };
