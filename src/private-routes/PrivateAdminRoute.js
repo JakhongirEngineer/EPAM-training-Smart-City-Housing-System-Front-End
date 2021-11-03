@@ -1,10 +1,20 @@
 import { Redirect, Route } from "react-router";
+import { useLocalStorageReducer } from "../hooks/useLocalStorageReduser";
 import { useUser } from "../hooks/useUser";
+import principalReducer from "../reducers/principalReducer";
 
-export const PrivateAdminRoute = (props) => {
+const PrivateAdminRoute = (props) => {
   const user = useUser();
-  //TODO check if user is NOT Admin
-  if (!user) return <Redirect to="/login" />; // redirects to login page
+  const [principal, principalDispatch] = useLocalStorageReducer(
+    "principal",
+    null,
+    principalReducer
+  );
+
+  if (!user || principal.roles[0].name !== "ADMIN")
+    return <Redirect to="/login" />; // redirects to login page
 
   return <Route {...props} />;
 };
+
+export default PrivateAdminRoute;

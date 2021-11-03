@@ -1,4 +1,4 @@
-const { useState } = require("react");
+import { useState } from "react";
 
 function useToggle(initialValue = false) {
   const [state, setState] = useState(initialValue);
