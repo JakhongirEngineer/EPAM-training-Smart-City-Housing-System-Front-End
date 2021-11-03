@@ -1,5 +1,5 @@
 import { Redirect, Route } from "react-router";
-import { useLocalStorageReducer } from "../hooks/useLocalStorageReduser";
+import { useLocalStorageReducer } from "../hooks/useLocalStorageReducer";
 import { useUser } from "../hooks/useUser";
 import principalReducer from "../reducers/principalReducer";
 

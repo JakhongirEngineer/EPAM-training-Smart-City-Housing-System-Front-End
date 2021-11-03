@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import "./App.css";
+import AdminMainPage from "./pages/AdminMainPage";
 import LogoutPage from "./pages/LogoutPage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
@@ -16,11 +17,8 @@ function App() {
           {/* <SignUpPage /> */}
           <Route exact path="/login" component={SignInPage} />
           <Route exact path="/logout" component={LogoutPage} />
-          <PrivateAdminRoute
-            exact
-            path="/admin"
-            component={() => <h1>not implemented yet</h1>}
-          />
+          <PrivateAdminRoute exact path="/admin" component={AdminMainPage} />
+
           <PrivateResidentRoute
             exact
             path="/residents"

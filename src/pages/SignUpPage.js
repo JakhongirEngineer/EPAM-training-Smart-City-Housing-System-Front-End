@@ -8,7 +8,7 @@ import styles from "../styles/SignUpStyles";
 
 import CircularProgress from "@mui/material/CircularProgress";
 import { useToken } from "../hooks/useToken";
-import { useLocalStorageReducer } from "../hooks/useLocalStorageReduser";
+import { useLocalStorageReducer } from "../hooks/useLocalStorageReducer";
 import principalReducer from "../reducers/principalReducer";
 
 const useStyles = makeStyles(styles);

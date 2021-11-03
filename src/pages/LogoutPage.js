@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
 import { useHistory } from "react-router";
-import { useLocalStorageReducer } from "../hooks/useLocalStorageReduser";
+import { useLocalStorageReducer } from "../hooks/useLocalStorageReducer";
 import { useToken } from "../hooks/useToken";
 import principalReducer from "../reducers/principalReducer";
 import logoutStyles from "../styles/LogoutStyles";
