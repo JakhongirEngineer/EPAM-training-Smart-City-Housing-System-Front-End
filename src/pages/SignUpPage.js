@@ -7,21 +7,18 @@ import { useInputState } from "../hooks/useInputState";
 import styles from "../styles/SignUpStyles";
 
 import CircularProgress from "@mui/material/CircularProgress";
-import { useToken } from "../hooks/useToken";
-import { useLocalStorageReducer } from "../hooks/useLocalStorageReducer";
-import principalReducer from "../reducers/principalReducer";
 
 const useStyles = makeStyles(styles);
 
 function SignInPage() {
   const classes = useStyles();
   const history = useHistory();
-  const [token, setToken] = useToken();
-  const [principal, principalDispatch] = useLocalStorageReducer(
-    "principal",
-    null,
-    principalReducer
-  );
+  // const [token, setToken] = useToken();
+  // const [principal, principalDispatch] = useLocalStorageReducer(
+  //   "principal",
+  //   null,
+  //   principalReducer
+  // );
 
   const [email, updateEmail, resetEmail] = useInputState("");
   const [password, updatePassword, resetPassword] = useInputState("");
@@ -32,6 +29,7 @@ function SignInPage() {
   ] = useInputState("");
   const [loading, setLoading] = useState(false);
   const [signUpError, setSignUpError] = useState(false);
+  const [signedUp, setSignedUp] = useState(false);
 
   const reset = () => {
     resetEmail();
@@ -60,9 +58,8 @@ function SignInPage() {
       alert("password must match with confirmed password");
       return;
     }
-    // TODO axios request
 
-    const postRequestForSignIn = async () => {
+    const postRequestForSignUp = async () => {
       let result;
       try {
         setLoading(true);
@@ -72,33 +69,17 @@ function SignInPage() {
           email,
           password,
         });
-        const { jwtToken } = result.data;
-        setToken(jwtToken);
 
-        const role = result.data.user.roles[0].name;
-        console.log(role);
-
-        const currentPrincipal = result.data.user;
-        console.log("currentPrincipal signIn: ", currentPrincipal);
-
-        principalDispatch({ type: "SET_PRINCIPAL", payload: currentPrincipal });
-
-        if (role === "ADMIN") {
-          history.push("/admin");
-        } else if (role === "RESIDENT") {
-          history.push("/residents");
+        if (result.data) {
+          setSignedUp(true);
         }
       } catch (e) {
         setSignUpError(true);
-        console.log(e);
       } finally {
         setLoading(false);
       }
-
-      console.log(result);
     };
-
-    postRequestForSignIn();
+    postRequestForSignUp();
   };
 
   return (
@@ -110,6 +91,11 @@ function SignInPage() {
         {signUpError && (
           <Alert severity="error">
             email is incorrect or you have already signed up!
+          </Alert>
+        )}
+        {signedUp && (
+          <Alert severity="success">
+            You have successfully signed up. You can log in now.
           </Alert>
         )}
         <div className={classes.inputs}>
