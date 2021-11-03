@@ -8,7 +8,6 @@ import axios from "../utils/Axios";
 
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
-import Resident from "../components/Resident";
 import AdminAppBar from "../components/AdminAppBar";
 import ResidentList from "../components/ResidentList";
 
@@ -51,7 +50,7 @@ function AdminManageResidentsPage() {
   };
 
   useEffect(() => {
-    handleGetResidents(0, 100, "firstName");
+    handleGetResidents(0, 20, "firstName");
   }, []);
 
   let content = <div></div>;
