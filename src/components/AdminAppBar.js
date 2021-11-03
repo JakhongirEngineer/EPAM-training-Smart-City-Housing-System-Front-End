@@ -49,7 +49,7 @@ function AdminAppBar() {
   return (
     <>
       <Box sx={{ flexGrow: 1, height: "10vh" }}>
-        <AppBar position="static">
+        <AppBar position="fixed">
           <Toolbar>
             <IconButton
               size="large"
@@ -60,7 +60,12 @@ function AdminAppBar() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 1, cursor: "pointer" }}
+              onClick={() => history.push("/admin")}
+            >
               Housing System
             </Typography>
             <div

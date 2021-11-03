@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import "./App.css";
 import AdminMainPage from "./pages/AdminMainPage";
+import AdminManageResidentsPage from "./pages/AdminManageResidentsPage";
 import LogoutPage from "./pages/LogoutPage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
@@ -18,6 +19,11 @@ function App() {
           <Route exact path="/login" component={SignInPage} />
           <Route exact path="/logout" component={LogoutPage} />
           <PrivateAdminRoute exact path="/admin" component={AdminMainPage} />
+          <PrivateAdminRoute
+            exact
+            path="/admin/residents"
+            component={AdminManageResidentsPage}
+          />
 
           <PrivateResidentRoute
             exact
