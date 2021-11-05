@@ -6,10 +6,13 @@ import {
 } from "react-router-dom";
 
 import "./App.css";
-import AdminMainPage from "./pages/AdminMainPage";
-import AdminManageAdvertisementArchivesPage from "./pages/AdminManageAdvertisementArchivesPage";
-import AdminManageResidentsPage from "./pages/AdminManageResidentsPage";
+import AdminMainPage from "./pages/admin/AdminMainPage";
+import AdminManageAdvertisementArchivesPage from "./pages/admin/AdminManageAdvertisementArchivesPage";
+import AdminManageResidentsPage from "./pages/admin/AdminManageResidentsPage";
 import LogoutPage from "./pages/LogoutPage";
+import ResidentAdvertisements from "./pages/resident/ResidentAdvertisements";
+import ResidentHouses from "./pages/resident/ResidentHouses";
+import ResidentsMainPage from "./pages/resident/ResidentsMainPage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 import PrivateAdminRoute from "./private-routes/PrivateAdminRoute";
@@ -21,7 +24,6 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/signUp" component={SignUpPage} />
-          {/* <SignUpPage /> */}
           <Route exact path="/login" component={SignInPage} />
           <Route exact path="/logout" component={LogoutPage} />
           <PrivateAdminRoute exact path="/admin" component={AdminMainPage} />
@@ -40,8 +42,20 @@ function App() {
           <PrivateResidentRoute
             exact
             path="/residents"
-            component={() => <h1>not implemented yet</h1>}
+            component={ResidentsMainPage}
           />
+
+          <PrivateResidentRoute
+            exact
+            path="/residents/:residentCode/advertisements"
+            component={ResidentAdvertisements}
+          />
+          <PrivateResidentRoute
+            exact
+            path="/residents/:residentCode/houses"
+            component={ResidentHouses}
+          />
+
           <Route path="*" component={() => <Redirect to="/login" />} />
         </Switch>
       </Router>

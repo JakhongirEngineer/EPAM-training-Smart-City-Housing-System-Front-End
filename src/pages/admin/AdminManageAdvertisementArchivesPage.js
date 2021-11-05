@@ -1,15 +1,15 @@
 import { makeStyles } from "@mui/styles";
 import React, { useEffect, useState } from "react";
-import { useLocalStorageReducer } from "../hooks/useLocalStorageReducer";
-import { useToken } from "../hooks/useToken";
-import advertisementArchivesReducer from "../reducers/advertisementArchivesReducer";
-import AdminManageAdvertisementArchivesPageStyle from "../styles/AdminManageAdvertisementArchivesPageStyle";
-import axios from "../utils/Axios";
+import { useLocalStorageReducer } from "../../hooks/useLocalStorageReducer";
+import { useToken } from "../../hooks/useToken";
+import advertisementArchivesReducer from "../../reducers/advertisementArchivesReducer";
+import AdminManageAdvertisementArchivesPageStyle from "../../styles/admin/AdminManageAdvertisementArchivesPageStyle";
+import axios from "../../utils/Axios";
 
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
-import AdminAppBar from "../components/AdminAppBar";
-import AdvertisementArchivesTable from "../components/AdvertisementArchivesTable";
+import AdminAppBar from "../../components/AdminAppBar";
+import AdvertisementArchivesTable from "../../components/AdvertisementArchivesTable";
 import { Backdrop, CircularProgress } from "@mui/material";
 
 const useStyles = makeStyles(AdminManageAdvertisementArchivesPageStyle);

@@ -13,12 +13,6 @@ const useStyles = makeStyles(styles);
 function SignInPage() {
   const classes = useStyles();
   const history = useHistory();
-  // const [token, setToken] = useToken();
-  // const [principal, principalDispatch] = useLocalStorageReducer(
-  //   "principal",
-  //   null,
-  //   principalReducer
-  // );
 
   const [email, updateEmail, resetEmail] = useInputState("");
   const [password, updatePassword, resetPassword] = useInputState("");
@@ -30,6 +24,7 @@ function SignInPage() {
   const [loading, setLoading] = useState(false);
   const [signUpError, setSignUpError] = useState(false);
   const [signedUp, setSignedUp] = useState(false);
+  const [residentCode, setResidentCode] = useState();
 
   const reset = () => {
     resetEmail();
@@ -72,6 +67,7 @@ function SignInPage() {
 
         if (result.data) {
           setSignedUp(true);
+          setResidentCode(result.data.residentCode);
         }
       } catch (e) {
         setSignUpError(true);
@@ -96,6 +92,10 @@ function SignInPage() {
         {signedUp && (
           <Alert severity="success">
             You have successfully signed up. You can log in now.
+            <div style={{ fontWeight: "bold", color: "red" }}>
+              {residentCode &&
+                "You must remember your resident code: " + residentCode}
+            </div>
           </Alert>
         )}
         <div className={classes.inputs}>

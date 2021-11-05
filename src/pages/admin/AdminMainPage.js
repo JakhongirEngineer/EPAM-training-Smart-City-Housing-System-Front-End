@@ -1,10 +1,10 @@
 import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
-import AdminAppBar from "../components/AdminAppBar";
-import { useLocalStorageReducer } from "../hooks/useLocalStorageReducer";
-import principalReducer from "../reducers/principalReducer";
-import AdminMainPageStyles from "../styles/AdminMainPageStyles";
+import AdminAppBar from "../../components/AdminAppBar";
+import { useLocalStorageReducer } from "../../hooks/useLocalStorageReducer";
+import principalReducer from "../../reducers/principalReducer";
+import AdminMainPageStyles from "../../styles/admin/AdminMainPageStyles";
 
 const useStyles = makeStyles(AdminMainPageStyles);
 

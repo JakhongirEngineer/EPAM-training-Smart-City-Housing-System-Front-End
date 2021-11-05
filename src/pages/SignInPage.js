@@ -10,6 +10,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useToken } from "../hooks/useToken";
 import { useLocalStorageReducer } from "../hooks/useLocalStorageReducer";
 import principalReducer from "../reducers/principalReducer";
+import residentCodeReducer from "../reducers/residentCodeReducer";
 
 const useStyles = makeStyles(styles);
 
@@ -21,6 +22,12 @@ function SignInPage() {
     "principal",
     null,
     principalReducer
+  );
+
+  const [residentCode, residentCodeDispatch] = useLocalStorageReducer(
+    "residentCode",
+    null,
+    residentCodeReducer
   );
 
   const [email, updateEmail, resetEmail] = useInputState("");
@@ -49,7 +56,6 @@ function SignInPage() {
       alert("You have entered an invalid email address!");
       return;
     }
-    // TODO axios request
 
     const postRequestForSignIn = async () => {
       let result;
@@ -60,8 +66,12 @@ function SignInPage() {
           email,
           password,
         });
-        const { jwtToken } = result.data;
+        const { jwtToken, residentCode } = result.data;
         setToken(jwtToken);
+        residentCodeDispatch({
+          type: "SET_RESIDENT_CODE",
+          payload: residentCode,
+        });
 
         const role = result.data.user.roles[0].name;
         console.log(role);

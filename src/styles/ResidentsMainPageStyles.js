@@ -1,6 +1,6 @@
 import Image from "../assets/admin-background3.svg";
 
-const AdminMainPageStyles = (theme) => ({
+const ResidentsMainPageStyles = (theme) => ({
   header: {
     color: "blue",
     margin: "1rem",
@@ -31,4 +31,4 @@ const AdminMainPageStyles = (theme) => ({
   },
 });
 
-export default AdminMainPageStyles;
+export default ResidentsMainPageStyles;

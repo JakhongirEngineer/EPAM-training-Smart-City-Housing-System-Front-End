@@ -1,15 +1,15 @@
 import { makeStyles } from "@mui/styles";
 import React, { useEffect, useState } from "react";
-import { useLocalStorageReducer } from "../hooks/useLocalStorageReducer";
-import { useToken } from "../hooks/useToken";
-import residentsReducer from "../reducers/residentsReducer";
-import AdminManageResidentsPageStyles from "../styles/AdminManageResidentsPageStyles";
-import axios from "../utils/Axios";
+import { useLocalStorageReducer } from "../../hooks/useLocalStorageReducer";
+import { useToken } from "../../hooks/useToken";
+import residentsReducer from "../../reducers/residentsReducer";
+import AdminManageResidentsPageStyles from "../../styles/admin/AdminManageResidentsPageStyles";
+import axios from "../../utils/Axios";
 
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
-import AdminAppBar from "../components/AdminAppBar";
-import ResidentList from "../components/ResidentList";
+import AdminAppBar from "../../components/AdminAppBar";
+import ResidentList from "../../components/ResidentList";
 
 const useStyles = makeStyles(AdminManageResidentsPageStyles);
 
