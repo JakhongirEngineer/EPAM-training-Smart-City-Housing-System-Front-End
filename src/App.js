@@ -10,6 +10,7 @@ import AdminMainPage from "./pages/admin/AdminMainPage";
 import AdminManageAdvertisementArchivesPage from "./pages/admin/AdminManageAdvertisementArchivesPage";
 import AdminManageResidentsPage from "./pages/admin/AdminManageResidentsPage";
 import LogoutPage from "./pages/LogoutPage";
+import BuyingAdvertisements from "./pages/resident/BuyingAdvertisements";
 import ResidentAdvertisements from "./pages/resident/ResidentAdvertisements";
 import ResidentHouses from "./pages/resident/ResidentHouses";
 import ResidentsMainPage from "./pages/resident/ResidentsMainPage";
@@ -59,7 +60,7 @@ function App() {
           <PrivateResidentRoute
             exact
             path="/buying/advertisements"
-            component={() => <h1>buying advertisemnts</h1>}
+            component={BuyingAdvertisements}
           />
 
           <Route path="*" component={() => <Redirect to="/login" />} />
