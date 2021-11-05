@@ -10,6 +10,7 @@ import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 import AdminAppBar from "../../components/AdminAppBar";
 import ResidentList from "../../components/ResidentList";
+import SkeletonPlaceholder from "../../components/SceletonPlaceholder";
 
 const useStyles = makeStyles(AdminManageResidentsPageStyles);
 
@@ -58,23 +59,7 @@ function AdminManageResidentsPage() {
   if (fetchingError) {
     content = <div>Error while fetching</div>;
   } else if (fetching) {
-    content = (
-      <Stack spacing={1}>
-        <Skeleton variant="text" width={210} height={118} />
-        <Skeleton variant="circular" width={40} height={40} />
-        <Skeleton />
-        <Skeleton animation="wave" />
-        <Skeleton animation={false} />
-        <Skeleton />
-        <Skeleton animation="wave" />
-        <Skeleton animation={false} />
-        <Skeleton />
-        <Skeleton animation="wave" />
-        <Skeleton animation={false} />
-        <Skeleton variant="circular" width={40} height={40} />
-        <Skeleton variant="rectangular" width={210} height={118} />
-      </Stack>
-    );
+    content = <SkeletonPlaceholder />;
   } else if (!fetching && !fetchingError) {
     content = <ResidentList residents={residents} />;
   }

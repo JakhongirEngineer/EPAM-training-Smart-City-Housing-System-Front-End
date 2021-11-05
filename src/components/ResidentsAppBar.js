@@ -79,7 +79,7 @@ function ResidentsAppBar() {
               </Button>
               <Button
                 color="inherit"
-                onClick={() => history.push("/admin/advertisementArchives")}
+                onClick={() => history.push("/buying/advertisements")}
               >
                 Advertisements/Buy a house
               </Button>

@@ -6,11 +6,10 @@ import advertisementArchivesReducer from "../../reducers/advertisementArchivesRe
 import AdminManageAdvertisementArchivesPageStyle from "../../styles/admin/AdminManageAdvertisementArchivesPageStyle";
 import axios from "../../utils/Axios";
 
-import Skeleton from "@mui/material/Skeleton";
-import Stack from "@mui/material/Stack";
 import AdminAppBar from "../../components/AdminAppBar";
 import AdvertisementArchivesTable from "../../components/AdvertisementArchivesTable";
 import { Backdrop, CircularProgress } from "@mui/material";
+import SkeletonPlaceholder from "../../components/SceletonPlaceholder";
 
 const useStyles = makeStyles(AdminManageAdvertisementArchivesPageStyle);
 
@@ -97,23 +96,7 @@ function AdminManageAdvertisementArchivesPage() {
       </div>
     );
   } else if (fetching) {
-    content = (
-      <Stack spacing={1}>
-        <Skeleton variant="text" width={210} height={118} />
-        <Skeleton variant="circular" width={40} height={40} />
-        <Skeleton />
-        <Skeleton animation="wave" />
-        <Skeleton animation={false} />
-        <Skeleton />
-        <Skeleton animation="wave" />
-        <Skeleton animation={false} />
-        <Skeleton />
-        <Skeleton animation="wave" />
-        <Skeleton animation={false} />
-        <Skeleton variant="circular" width={40} height={40} />
-        <Skeleton variant="rectangular" width={210} height={118} />
-      </Stack>
-    );
+    content = <SkeletonPlaceholder />;
   } else if (!fetching && !fetchingError) {
     content = (
       <AdvertisementArchivesTable

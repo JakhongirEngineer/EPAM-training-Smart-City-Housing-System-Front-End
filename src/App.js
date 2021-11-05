@@ -56,6 +56,12 @@ function App() {
             component={ResidentHouses}
           />
 
+          <PrivateResidentRoute
+            exact
+            path="/buying/advertisements"
+            component={() => <h1>buying advertisemnts</h1>}
+          />
+
           <Route path="*" component={() => <Redirect to="/login" />} />
         </Switch>
       </Router>

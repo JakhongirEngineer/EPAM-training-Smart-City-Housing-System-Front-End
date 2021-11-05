@@ -17,7 +17,6 @@ function ResidentsMainPage() {
     principalReducer
   );
 
-  console.log("principal: in admin page: ", principal);
   return (
     <div>
       <ResidentsAppBar />
@@ -29,12 +28,9 @@ function ResidentsMainPage() {
               style={{ marginRight: "2rem", color: "blue" }}
             >
               {" "}
-              MANAGE RESIDENTS{" "}
+              My House(s){" "}
             </Typography>
-            <Typography variant="body1">
-              {" "}
-              You can view all residents' information{" "}
-            </Typography>
+            <Typography variant="body1"> You can see your house(s) </Typography>
           </div>
           <div className={classes.infoItem}>
             <Typography
@@ -42,10 +38,10 @@ function ResidentsMainPage() {
               style={{ marginRight: "2rem", color: "blue" }}
             >
               {" "}
-              MANAGE ADVERTISEMENT ARCHIVES{" "}
+              My Advertisements{" "}
             </Typography>
             <Typography variant="body1">
-              You can view and delete Advertisement archives
+              You can view, edit, and delete your advertisements
             </Typography>
           </div>
 
@@ -55,11 +51,10 @@ function ResidentsMainPage() {
               style={{ marginRight: "2rem", color: "blue" }}
             >
               {" "}
-              SYNC IN DATABASE{" "}
+              Advertisements/Buy a house{" "}
             </Typography>
             <Typography variant="body1">
-              You can populate database with data from City Administration
-              module
+              You can view advertisements, and buy a house
             </Typography>
           </div>
 

@@ -2,6 +2,7 @@ import { Skeleton, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import House from "../../components/House";
 import ResidentsAppBar from "../../components/ResidentsAppBar";
+import SkeletonPlaceholder from "../../components/SceletonPlaceholder";
 import { useLocalStorageReducer } from "../../hooks/useLocalStorageReducer";
 import { useToken } from "../../hooks/useToken";
 import residentCodeReducer from "../../reducers/residentCodeReducer";
@@ -35,16 +36,7 @@ function ResidentHouses() {
   }, []);
   let content = "";
   if (fetchingHouses) {
-    content = (
-      <Stack spacing={1}>
-        <Skeleton variant="text" />
-        <Skeleton variant="circular" width={40} height={40} />
-        <Skeleton variant="rectangular" width={400} height={300} />
-        <Skeleton />
-        <Skeleton animation="wave" />
-        <Skeleton animation={false} />
-      </Stack>
-    );
+    content = <SkeletonPlaceholder />;
   } else {
     content = houses.map((h) => (
       <div

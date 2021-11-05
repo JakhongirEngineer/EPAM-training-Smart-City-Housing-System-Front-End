@@ -11,8 +11,6 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  Skeleton,
-  Stack,
   TextField,
   Typography,
 } from "@mui/material";
@@ -22,6 +20,7 @@ import { v4 as uuid } from "uuid";
 
 import Advertisement from "../../components/Advertisement";
 import ResidentsAppBar from "../../components/ResidentsAppBar";
+import SkeletonPlaceholder from "../../components/SceletonPlaceholder";
 import { useInputState } from "../../hooks/useInputState";
 import { useLocalStorageReducer } from "../../hooks/useLocalStorageReducer";
 import { useToken } from "../../hooks/useToken";
@@ -175,30 +174,7 @@ function ResidentAdvertisements() {
 
   let content = "";
   if (fetchingAdvertisements) {
-    content = (
-      <>
-        <Stack spacing={1}>
-          <Skeleton variant="text" />
-          <Skeleton variant="circular" width={40} height={40} />
-          <Skeleton variant="rectangular" width={210} height={118} />
-        </Stack>
-        <Stack spacing={1}>
-          <Skeleton variant="text" />
-          <Skeleton variant="circular" width={40} height={40} />
-          <Skeleton variant="rectangular" width={210} height={118} />
-        </Stack>
-        <Stack spacing={1}>
-          <Skeleton variant="text" />
-          <Skeleton variant="circular" width={40} height={40} />
-          <Skeleton variant="rectangular" width={210} height={118} />
-        </Stack>
-        <Stack spacing={1}>
-          <Skeleton variant="text" />
-          <Skeleton variant="circular" width={40} height={40} />
-          <Skeleton variant="rectangular" width={210} height={118} />
-        </Stack>
-      </>
-    );
+    content = <SkeletonPlaceholder />;
   } else {
     content =
       advertisements.length === 0 ? (
