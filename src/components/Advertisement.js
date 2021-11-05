@@ -11,6 +11,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  TextField,
   Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -18,6 +19,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import React, { useState } from "react";
 import { useToken } from "../hooks/useToken";
 import axios from "../utils/Axios";
+import { useInputState } from "../hooks/useInputState";
 /*
 {
     "description": "string",
@@ -56,10 +58,37 @@ const style = {
     width: "100%",
   },
 };
-function Advertisement({ advertisement, deleteAdvertisement }) {
+function Advertisement({
+  advertisement,
+  deleteAdvertisement,
+  editAdvertisement,
+}) {
   const [token, setToken] = useToken();
   const [deleting, setDeleting] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+
+  const [description, updateDescription, resetDescription] = useInputState(
+    advertisement.description
+  );
+  const [phone, updatePhone, resetPhone] = useInputState(advertisement.phone);
+  const [price, updatePrice, resetPrice] = useInputState(advertisement.price);
+  const [title, updateTitle, resetTitle] = useInputState(advertisement.title);
+  const [openEditDialog, setOpenEditDialog] = useState(false);
+  const [editing, setEditing] = useState(false);
+
+  const resetFields = () => {
+    resetPhone();
+    resetPrice();
+    resetTitle();
+    resetDescription();
+  };
+
+  const populateFields = () => {
+    updateDescription({ target: { value: advertisement.description } });
+    updatePhone({ target: { value: advertisement.phone } });
+    updatePrice({ target: { value: advertisement.price } });
+    updateTitle({ target: { value: advertisement.title } });
+  };
 
   const handleDelete = async () => {
     try {
@@ -82,7 +111,34 @@ function Advertisement({ advertisement, deleteAdvertisement }) {
     }
   };
 
-  const handleEdit = () => {};
+  const handleEdit = async () => {
+    try {
+      setEditing(true);
+      setOpenEditDialog(false);
+      const editResponse = await axios.put(
+        `/advertisements/${advertisement.residentCode}/${advertisement.uuid}`,
+        {
+          description,
+          houseCode: advertisement.houseCode,
+          phone,
+          photoUrls: advertisement.photoUrls,
+          price,
+          residentCode: advertisement.residentCode,
+          title,
+          uuid: advertisement.uuid,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      editAdvertisement(editResponse.data);
+    } catch (e) {
+    } finally {
+      setEditing(false);
+    }
+  };
 
   return (
     <div style={style.advertisement}>
@@ -118,7 +174,13 @@ function Advertisement({ advertisement, deleteAdvertisement }) {
         }}
         aria-label="outlined button group"
       >
-        <Button style={{ backgroundColor: "green" }} onClick={handleEdit}>
+        <Button
+          style={{ backgroundColor: "green" }}
+          onClick={() => {
+            populateFields();
+            setOpenEditDialog(true);
+          }}
+        >
           Edit
         </Button>
         <Button
@@ -131,7 +193,7 @@ function Advertisement({ advertisement, deleteAdvertisement }) {
 
       <Backdrop
         sx={{ color: "#ffd", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={deleting}
+        open={deleting || editing}
       >
         <CircularProgress color="error" />
       </Backdrop>
@@ -158,6 +220,73 @@ function Advertisement({ advertisement, deleteAdvertisement }) {
           </Button>
         </DialogActions>
       </Dialog>
+
+      {/* edit dialog */}
+
+      <Dialog open={openEditDialog} onClose={() => setOpenEditDialog(false)}>
+        <DialogTitle>Edit your existing advertisement</DialogTitle>
+        <DialogContent>
+          <TextField
+            margin="dense"
+            id="houseCode"
+            label="House Code"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={advertisement.houseCode}
+            disabled
+          />
+          <TextField
+            margin="dense"
+            id="title"
+            label="Title"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={title}
+            onChange={updateTitle}
+          />
+
+          <TextField
+            margin="dense"
+            id="price"
+            label="Price"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={price}
+            onChange={updatePrice}
+          />
+
+          <TextField
+            margin="dense"
+            id="phone"
+            label="Phone"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={phone}
+            onChange={updatePhone}
+          />
+
+          <TextField
+            style={{ width: "100%" }}
+            id="outlined-multiline-flexible"
+            label="Description"
+            multiline
+            maxRows={20}
+            value={description}
+            onChange={updateDescription}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenEditDialog(false)}>Cancel</Button>
+          <Button onClick={resetFields}>Reset</Button>
+          <Button onClick={handleEdit}>Edit</Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* edit dialog */}
     </div>
   );
 }

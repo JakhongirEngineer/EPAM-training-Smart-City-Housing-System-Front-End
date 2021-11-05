@@ -28,18 +28,6 @@ import { useToken } from "../../hooks/useToken";
 import residentCodeReducer from "../../reducers/residentCodeReducer";
 import axios from "../../utils/Axios";
 
-const advertisement = {
-  description:
-    "akl;sfdjlajv;l kjas;flkaj;lkfjalksjflajslfjalnvav afklakjalksjf aslkjfaljf asldkjaslkjla lsdkjlakj; a akjklsdjknvandj asfj aklnfkasgl haj  a aklgnaklnv",
-  houseCode: 11111,
-  phone: "+998999999955",
-  photoUrls: ["www.google.com"],
-  price: 30000,
-  residentCode: 123456,
-  title: "New House",
-  uuid: "sakdsdlfkgslkj",
-};
-
 function ResidentAdvertisements() {
   const [token, setToken] = useToken();
   const [residentCode, residentCodeDispatch] = useLocalStorageReducer(
@@ -59,6 +47,14 @@ function ResidentAdvertisements() {
   const [title, updateTitle, resetTitle] = useInputState("");
   const [houseCode, updateHouseCode, resetHouseCode] = useInputState(0);
   const [houses, setHouses] = useState([]);
+
+  const resetFields = () => {
+    resetPhone();
+    resetPrice();
+    resetTitle();
+    resetHouseCode();
+    resetDescription();
+  };
 
   const handleSelectHouse = async (e) => {
     updateHouseCode(e);
@@ -169,6 +165,9 @@ function ResidentAdvertisements() {
     );
   };
 
+  const editAdvertisement = (editedAdvertisement) => {
+    getAdvertisements();
+  };
   useEffect(() => {
     getAdvertisements();
     getHouses();
@@ -211,6 +210,7 @@ function ResidentAdvertisements() {
           <Advertisement
             advertisement={ad}
             deleteAdvertisement={deleteAdvertisement}
+            editAdvertisement={editAdvertisement}
           />
         ))
       );
@@ -323,6 +323,7 @@ function ResidentAdvertisements() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCreateAdvertisementCancel}>Cancel</Button>
+          <Button onClick={resetFields}> Reset </Button>
           <Button onClick={handleCreateAdvertisement}>Create</Button>
         </DialogActions>
       </Dialog>
