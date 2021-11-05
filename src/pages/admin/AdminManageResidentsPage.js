@@ -10,7 +10,7 @@ import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 import AdminAppBar from "../../components/AdminAppBar";
 import ResidentList from "../../components/ResidentList";
-import SkeletonPlaceholder from "../../components/SceletonPlaceholder";
+import SkeletonPlaceholder from "../../components/SkeletonPlaceholder";
 
 const useStyles = makeStyles(AdminManageResidentsPageStyles);
 

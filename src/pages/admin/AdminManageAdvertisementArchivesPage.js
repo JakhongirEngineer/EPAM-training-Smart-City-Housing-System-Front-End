@@ -9,7 +9,7 @@ import axios from "../../utils/Axios";
 import AdminAppBar from "../../components/AdminAppBar";
 import AdvertisementArchivesTable from "../../components/AdvertisementArchivesTable";
 import { Backdrop, CircularProgress } from "@mui/material";
-import SkeletonPlaceholder from "../../components/SceletonPlaceholder";
+import SkeletonPlaceholder from "../../components/SkeletonPlaceholder";
 
 const useStyles = makeStyles(AdminManageAdvertisementArchivesPageStyle);
 

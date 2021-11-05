@@ -2,7 +2,7 @@ import { Skeleton, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import House from "../../components/House";
 import ResidentsAppBar from "../../components/ResidentsAppBar";
-import SkeletonPlaceholder from "../../components/SceletonPlaceholder";
+import SkeletonPlaceholder from "../../components/SkeletonPlaceholder";
 import { useLocalStorageReducer } from "../../hooks/useLocalStorageReducer";
 import { useToken } from "../../hooks/useToken";
 import residentCodeReducer from "../../reducers/residentCodeReducer";

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   Accordion,
@@ -12,6 +12,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Slide,
   TextField,
   Typography,
 } from "@mui/material";
@@ -19,20 +20,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useToken } from "../hooks/useToken";
 import axios from "../utils/Axios";
 import { useInputState } from "../hooks/useInputState";
-/*
-  {
-      "description": "string",
-      "houseCode": 0,
-      "phone": "string",
-      "photoUrls": [
-        "string"
-      ],
-      "price": 0,
-      "residentCode": 0,
-      "title": "string",
-      "uuid": "string"
-  }
-  */
+
 const style = {
   advertisement: {
     display: "flex",
@@ -57,8 +45,24 @@ const style = {
     width: "100%",
   },
 };
-function AdvertisementOnSale({ advertisement }) {
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+function AdvertisementOnSale({ advertisement, startMoneyTransfer }) {
   const [token, setToken] = useToken();
+  const [openBuyDialog, setOpenBuyDialog] = useState(false);
+  const [description, updateDescription, resetDescription] = useInputState("");
+
+  const handleStartMoneyTransfer = () => {
+    let advertisementUuid = advertisement.uuid;
+    if (!description) {
+      alert("provide a description");
+      return;
+    }
+    startMoneyTransfer({ advertisementUuid, description });
+    setOpenBuyDialog(false);
+  };
 
   return (
     <div style={style.advertisement}>
@@ -87,7 +91,7 @@ function AdvertisementOnSale({ advertisement }) {
       </div>
       <Button
         style={{ backgroundColor: "red" }}
-        // onClick={() => setOpenDeleteDialog(true)}
+        onClick={() => setOpenBuyDialog(true)}
       >
         Buy
       </Button>
@@ -98,6 +102,34 @@ function AdvertisementOnSale({ advertisement }) {
       >
         <CircularProgress color="error" />
       </Backdrop>
+
+      <Dialog
+        open={openBuyDialog}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={() => setOpenBuyDialog(false)}
+        aria-describedby="dialog to get description for buying"
+      >
+        <DialogTitle>Description</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+            Please, provide description as to why you are buying this house.
+          </DialogContentText>
+          <TextField
+            id="outlined-multiline-flexible"
+            label="Description"
+            multiline
+            maxRows={5}
+            value={description}
+            onChange={updateDescription}
+            style={{ width: "100%", padding: "0.5rem", marginTop: "0.5rem" }}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenBuyDialog(false)}>Cancel</Button>
+          <Button onClick={handleStartMoneyTransfer}>Proceed</Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

@@ -20,7 +20,7 @@ import { v4 as uuid } from "uuid";
 
 import Advertisement from "../../components/Advertisement";
 import ResidentsAppBar from "../../components/ResidentsAppBar";
-import SkeletonPlaceholder from "../../components/SceletonPlaceholder";
+import SkeletonPlaceholder from "../../components/SkeletonPlaceholder";
 import { useInputState } from "../../hooks/useInputState";
 import { useLocalStorageReducer } from "../../hooks/useLocalStorageReducer";
 import { useToken } from "../../hooks/useToken";
