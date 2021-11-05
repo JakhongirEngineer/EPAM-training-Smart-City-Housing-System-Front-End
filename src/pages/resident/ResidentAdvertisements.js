@@ -28,8 +28,8 @@ import residentCodeReducer from "../../reducers/residentCodeReducer";
 import axios from "../../utils/Axios";
 
 function ResidentAdvertisements() {
-  const [token, setToken] = useToken();
-  const [residentCode, residentCodeDispatch] = useLocalStorageReducer(
+  const [token] = useToken();
+  const [residentCode] = useLocalStorageReducer(
     "residentCode",
     0,
     residentCodeReducer
@@ -96,7 +96,7 @@ function ResidentAdvertisements() {
       setStartCreateAdvertisement(false);
       setPostingAdvertisement(true);
 
-      let postResult = await axios.post(
+      await axios.post(
         `/advertisements/${residentCode}`,
         {
           description,
@@ -160,7 +160,7 @@ function ResidentAdvertisements() {
 
   const deleteAdvertisement = (deletedAdvertisementUUID) => {
     setAdvertisements(
-      advertisements.filter((ad) => ad.uuid != deletedAdvertisementUUID)
+      advertisements.filter((ad) => ad.uuid !== deletedAdvertisementUUID)
     );
   };
 
@@ -184,6 +184,7 @@ function ResidentAdvertisements() {
       ) : (
         advertisements.map((ad) => (
           <Advertisement
+            key={ad.uuid}
             advertisement={ad}
             deleteAdvertisement={deleteAdvertisement}
             editAdvertisement={editAdvertisement}

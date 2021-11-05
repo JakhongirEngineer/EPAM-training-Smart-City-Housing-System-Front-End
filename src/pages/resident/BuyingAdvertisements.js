@@ -21,7 +21,7 @@ import axios from "../../utils/Axios";
 
 function BuyingAdvertisements() {
   const [advertisements, setAdvertisements] = useState([]);
-  const [token, setToken] = useToken();
+  const [token] = useToken();
   const [page, setPage] = useState(0);
   const [fetching, setFetching] = useState(false);
   const [startProceedingToTransfer, setStartProceedingToTransfer] =
@@ -29,7 +29,7 @@ function BuyingAdvertisements() {
   const [proceedSuccess, setProceedSuccess] = useState(false);
   const [proceedResult, setProceedResult] = useState();
   const [openRedirectDialog, setOpenRedirectDialog] = useState(false);
-  const [residentCode, residentCodeDispatch] = useLocalStorageReducer(
+  const [residentCode] = useLocalStorageReducer(
     "residentCode",
     0,
     residentCodeReducer
@@ -115,8 +115,7 @@ function BuyingAdvertisements() {
   }
 
   const handleRedirectToTransfer = () => {
-    console.log(proceedResult);
-    window.location.href = proceedResult.object;
+    setOpenRedirectDialog(false);
   };
 
   return (
@@ -175,7 +174,9 @@ function BuyingAdvertisements() {
         <DialogActions>
           {proceedSuccess ? (
             <Button onClick={handleRedirectToTransfer} autoFocus>
-              Continue to transfer
+              <a target="_blank" href={`${proceedResult.object}`}>
+                Continue to transfer
+              </a>
             </Button>
           ) : (
             <Button onClick={() => setOpenRedirectDialog(false)}>

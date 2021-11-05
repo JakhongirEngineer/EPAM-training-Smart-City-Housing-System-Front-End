@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-
-import axios from "../utils/Axios";
 import { useToken } from "../hooks/useToken";
 
 import AppBar from "@mui/material/AppBar";
@@ -19,10 +17,9 @@ import { useLocalStorageReducer } from "../hooks/useLocalStorageReducer";
 
 function ResidentsAppBar() {
   const history = useHistory();
-  const [token, setToken] = useToken();
-  const [syncInProgress, setSyncInProgress] = useState(false);
+  const [syncInProgress] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [residentCode, residentCodeDispatch] = useLocalStorageReducer(
+  const [residentCode] = useLocalStorageReducer(
     "residentCode",
     null,
     residentCodeReducer

@@ -10,7 +10,6 @@ import {
   DialogContent,
   DialogActions,
   DialogTitle,
-  DialogContentText,
 } from "@mui/material";
 import React, { useState } from "react";
 import { useToken } from "../hooks/useToken";
@@ -42,7 +41,7 @@ function Resident({
     },
   };
 
-  const [token, setToken] = useToken();
+  const [token] = useToken();
   const [fetchingHouse, setFetchingHouse] = useState(false);
   const [currentHouse, setCurrentHouse] = useState(null);
   const [openHouse, setOpenHouse] = useState(false);

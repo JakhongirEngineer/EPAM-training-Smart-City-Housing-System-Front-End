@@ -1,4 +1,4 @@
-import { Skeleton, Stack, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import House from "../../components/House";
 import ResidentsAppBar from "../../components/ResidentsAppBar";
@@ -11,8 +11,8 @@ import axios from "../../utils/Axios";
 function ResidentHouses() {
   const [fetchingHouses, setFetchingHouses] = useState(true);
   const [houses, setHouses] = useState([]);
-  const [token, setToken] = useToken();
-  const [residentCode, residentCodeDispatch] = useLocalStorageReducer(
+  const [token] = useToken();
+  const [residentCode] = useLocalStorageReducer(
     "residentCode",
     0,
     residentCodeReducer

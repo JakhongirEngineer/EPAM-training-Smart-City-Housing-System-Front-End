@@ -5,7 +5,7 @@ import principalReducer from "../reducers/principalReducer";
 
 const PrivateResidentRoute = (props) => {
   const user = useUser();
-  const [principal, principalDispatch] = useLocalStorageReducer(
+  const [principal] = useLocalStorageReducer(
     "principal",
     null,
     principalReducer

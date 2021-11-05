@@ -11,13 +11,11 @@ const useStyles = makeStyles(AdminMainPageStyles);
 function AdminMainPage() {
   const classes = useStyles();
 
-  const [principal, dispatchPrincipal] = useLocalStorageReducer(
+  const [principal] = useLocalStorageReducer(
     "principal",
     null,
     principalReducer
   );
-
-  console.log("principal: in admin page: ", principal);
   return (
     <div>
       <AdminAppBar />

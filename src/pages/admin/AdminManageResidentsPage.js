@@ -5,9 +5,6 @@ import { useToken } from "../../hooks/useToken";
 import residentsReducer from "../../reducers/residentsReducer";
 import AdminManageResidentsPageStyles from "../../styles/admin/AdminManageResidentsPageStyles";
 import axios from "../../utils/Axios";
-
-import Skeleton from "@mui/material/Skeleton";
-import Stack from "@mui/material/Stack";
 import AdminAppBar from "../../components/AdminAppBar";
 import ResidentList from "../../components/ResidentList";
 import SkeletonPlaceholder from "../../components/SkeletonPlaceholder";
@@ -16,7 +13,7 @@ const useStyles = makeStyles(AdminManageResidentsPageStyles);
 
 function AdminManageResidentsPage() {
   const classes = useStyles();
-  const [token, setToken] = useToken();
+  const [token] = useToken();
   const [fetching, setFetching] = useState(true);
   const [fetchingError, setFetchingError] = useState(false);
 

@@ -13,8 +13,8 @@ function LogoutPage() {
   const classes = useStyles();
 
   const history = useHistory();
-  const [token, setToken] = useToken();
-  const [principal, principalDispatch] = useLocalStorageReducer(
+  const [, setToken] = useToken();
+  const [, principalDispatch] = useLocalStorageReducer(
     "principal",
     null,
     principalReducer

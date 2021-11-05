@@ -15,7 +15,7 @@ const useStyles = makeStyles(AdminManageAdvertisementArchivesPageStyle);
 
 function AdminManageAdvertisementArchivesPage() {
   const classes = useStyles();
-  const [token, setToken] = useToken();
+  const [token] = useToken();
   const [fetching, setFetching] = useState(true);
   const [fetchingError, setFetchingError] = useState(false);
   const [deleting, setDeleting] = useState(false);

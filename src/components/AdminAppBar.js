@@ -17,7 +17,7 @@ import { Snackbar } from "@mui/material";
 
 function AdminAppBar() {
   const history = useHistory();
-  const [token, setToken] = useToken();
+  const [token] = useToken();
   const [syncInProgress, setSyncInProgress] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 

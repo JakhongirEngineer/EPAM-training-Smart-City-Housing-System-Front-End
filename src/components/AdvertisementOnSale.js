@@ -18,7 +18,6 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useToken } from "../hooks/useToken";
-import axios from "../utils/Axios";
 import { useInputState } from "../hooks/useInputState";
 
 const style = {
@@ -50,9 +49,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 function AdvertisementOnSale({ advertisement, startMoneyTransfer }) {
-  const [token, setToken] = useToken();
   const [openBuyDialog, setOpenBuyDialog] = useState(false);
-  const [description, updateDescription, resetDescription] = useInputState("");
+  const [description, updateDescription] = useInputState("");
 
   const handleStartMoneyTransfer = () => {
     let advertisementUuid = advertisement.uuid;

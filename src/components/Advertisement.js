@@ -20,20 +20,7 @@ import React, { useState } from "react";
 import { useToken } from "../hooks/useToken";
 import axios from "../utils/Axios";
 import { useInputState } from "../hooks/useInputState";
-/*
-{
-    "description": "string",
-    "houseCode": 0,
-    "phone": "string",
-    "photoUrls": [
-      "string"
-    ],
-    "price": 0,
-    "residentCode": 0,
-    "title": "string",
-    "uuid": "string"
-}
-*/
+
 const style = {
   advertisement: {
     display: "flex",
@@ -63,7 +50,7 @@ function Advertisement({
   deleteAdvertisement,
   editAdvertisement,
 }) {
-  const [token, setToken] = useToken();
+  const [token] = useToken();
   const [deleting, setDeleting] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
 

@@ -11,12 +11,6 @@ const useStyles = makeStyles(ResidentsMainPageStyles);
 function ResidentsMainPage() {
   const classes = useStyles();
 
-  const [principal, dispatchPrincipal] = useLocalStorageReducer(
-    "principal",
-    null,
-    principalReducer
-  );
-
   return (
     <div>
       <ResidentsAppBar />
