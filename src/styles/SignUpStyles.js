@@ -24,6 +24,11 @@ const styles = (theme) => ({
     backgroundColor: "rgb(225,225,225)",
     borderRadius: "1rem",
     boxShadow: "-0.3rem 1rem 0.3rem black",
+
+    [theme.breakpoints.down("md")]: {
+      width: "20rem",
+      height: "70vh",
+    },
   },
   inputs: {
     display: "flex",

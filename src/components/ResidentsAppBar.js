@@ -12,10 +12,16 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Snackbar } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 import residentCodeReducer from "../reducers/residentCodeReducer";
 import { useLocalStorageReducer } from "../hooks/useLocalStorageReducer";
 
 function ResidentsAppBar() {
+  const theme = useTheme();
+  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+
   const history = useHistory();
   const [syncInProgress] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -34,20 +40,23 @@ function ResidentsAppBar() {
       <Box sx={{ flexGrow: 1, height: "10vh" }}>
         <AppBar position="fixed">
           <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
+            {!matchesMD && (
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2 }}
+              >
+                <MenuIcon />
+              </IconButton>
+            )}
             <Typography
               variant="h6"
               component="div"
               sx={{ flexGrow: 1, cursor: "pointer" }}
               onClick={() => history.push("/residents")}
+              style={{ fontSize: matchesMD ? "0.7rem" : "1.4rem" }}
             >
               Housing System
             </Typography>
@@ -56,6 +65,7 @@ function ResidentsAppBar() {
                 flexGrow: 1,
                 display: "flex",
                 justifyContent: "space-between",
+                fontSize: matchesMD ? "0.7rem" : "1.4rem",
               }}
             >
               <Button
@@ -63,6 +73,7 @@ function ResidentsAppBar() {
                 onClick={() =>
                   history.push(`/residents/${residentCode}/houses`)
                 }
+                style={{ fontSize: matchesMD ? "0.5rem" : "1.4rem" }}
               >
                 My House(s)
               </Button>
@@ -71,14 +82,16 @@ function ResidentsAppBar() {
                 onClick={() =>
                   history.push(`/residents/${residentCode}/advertisements`)
                 }
+                style={{ fontSize: matchesMD ? "0.5rem" : "1.4rem" }}
               >
                 My Advertisements
               </Button>
               <Button
                 color="inherit"
                 onClick={() => history.push("/buying/advertisements")}
+                style={{ fontSize: matchesMD ? "0.5rem" : "1.4rem" }}
               >
-                Advertisements/Buy a house
+                Buy a house
               </Button>
 
               <Backdrop
@@ -92,7 +105,11 @@ function ResidentsAppBar() {
                 <CircularProgress color="inherit" />
               </Backdrop>
 
-              <Button color="inherit" onClick={() => history.push("/logout")}>
+              <Button
+                color="inherit"
+                onClick={() => history.push("/logout")}
+                style={{ fontSize: matchesMD ? "0.5rem" : "1.4rem" }}
+              >
                 Logout
               </Button>
             </div>

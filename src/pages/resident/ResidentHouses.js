@@ -8,7 +8,13 @@ import { useToken } from "../../hooks/useToken";
 import residentCodeReducer from "../../reducers/residentCodeReducer";
 import axios from "../../utils/Axios";
 
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 function ResidentHouses() {
+  const theme = useTheme();
+  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+
   const [fetchingHouses, setFetchingHouses] = useState(true);
   const [houses, setHouses] = useState([]);
   const [token] = useToken();
@@ -41,7 +47,7 @@ function ResidentHouses() {
     content = houses.map((h) => (
       <div
         style={{
-          width: "30rem",
+          width: matchesMD ? "80vw" : "30rem",
           backgroundColor: "#cee7f5",
           padding: "1rem",
           margin: "0.5rem",

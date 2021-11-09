@@ -1,5 +1,5 @@
-import { makeStyles } from "@mui/styles";
 import React, { useEffect, useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import { useLocalStorageReducer } from "../../hooks/useLocalStorageReducer";
 import { useToken } from "../../hooks/useToken";
 import residentsReducer from "../../reducers/residentsReducer";

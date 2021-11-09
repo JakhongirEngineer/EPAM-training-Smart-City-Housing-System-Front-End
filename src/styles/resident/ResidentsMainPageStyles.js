@@ -1,4 +1,4 @@
-import Image from "../assets/admin-background3.svg";
+import Image from "../../assets/admin-background3.svg";
 
 const ResidentsMainPageStyles = (theme) => ({
   header: {
@@ -23,6 +23,9 @@ const ResidentsMainPageStyles = (theme) => ({
     backgroundColor: "white",
     borderRadius: "1rem",
     boxShadow: "0.3rem 0.4rem 0.5rem grey",
+    [theme.breakpoints.down("md")]: {
+      height: "70vh",
+    },
   },
   infoItem: {
     display: "flex",

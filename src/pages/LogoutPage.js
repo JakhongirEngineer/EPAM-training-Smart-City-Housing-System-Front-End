@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import { useHistory } from "react-router";
 import { useLocalStorageReducer } from "../hooks/useLocalStorageReducer";

@@ -14,7 +14,7 @@ function House({ house }) {
     house: {
       display: "flex",
       flexDirection: "column",
-      minWidth: "20rem",
+      width: "100%",
     },
     credential: {
       display: "flex",

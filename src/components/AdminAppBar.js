@@ -14,12 +14,17 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Snackbar } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function AdminAppBar() {
   const history = useHistory();
   const [token] = useToken();
   const [syncInProgress, setSyncInProgress] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+  const theme = useTheme();
+  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
@@ -51,19 +56,25 @@ function AdminAppBar() {
       <Box sx={{ flexGrow: 1, height: "10vh" }}>
         <AppBar position="fixed">
           <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
+            {!matchesMD && (
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2 }}
+              >
+                <MenuIcon />
+              </IconButton>
+            )}
             <Typography
               variant="h6"
               component="div"
-              sx={{ flexGrow: 1, cursor: "pointer" }}
+              sx={{
+                flexGrow: 1,
+                cursor: "pointer",
+                fontSize: matchesMD ? "0.7rem" : "1.4rem",
+              }}
               onClick={() => history.push("/admin")}
             >
               Housing System
@@ -73,22 +84,29 @@ function AdminAppBar() {
                 flexGrow: 1,
                 display: "flex",
                 justifyContent: "space-between",
+                fontSize: matchesMD ? "0.7rem" : "1.4rem",
               }}
             >
               <Button
                 color="inherit"
                 onClick={() => history.push("/admin/residents")}
+                style={{ fontSize: matchesMD ? "0.5rem" : "1.4rem" }}
               >
                 Manage Residents
               </Button>
               <Button
                 color="inherit"
                 onClick={() => history.push("/admin/advertisementArchives")}
+                style={{ fontSize: matchesMD ? "0.5rem" : "1.4rem" }}
               >
                 Manage Advertisement Archives
               </Button>
 
-              <Button color="inherit" onClick={handleSyncInDatabase}>
+              <Button
+                color="inherit"
+                onClick={handleSyncInDatabase}
+                style={{ fontSize: matchesMD ? "0.5rem" : "1.4rem" }}
+              >
                 Sync in Database
               </Button>
               <Backdrop
@@ -102,7 +120,11 @@ function AdminAppBar() {
                 <CircularProgress color="inherit" />
               </Backdrop>
 
-              <Button color="inherit" onClick={() => history.push("/logout")}>
+              <Button
+                color="inherit"
+                onClick={() => history.push("/logout")}
+                style={{ fontSize: matchesMD ? "0.5rem" : "1.4rem" }}
+              >
                 Logout
               </Button>
             </div>

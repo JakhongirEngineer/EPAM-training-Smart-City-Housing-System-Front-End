@@ -1,9 +1,9 @@
 import React from "react";
 import { Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { useLocalStorageReducer } from "../../hooks/useLocalStorageReducer";
 import principalReducer from "../../reducers/principalReducer";
-import ResidentsMainPageStyles from "../../styles/ResidentsMainPageStyles";
+import ResidentsMainPageStyles from "../../styles/resident/ResidentsMainPageStyles";
 import ResidentsAppBar from "../../components/ResidentsAppBar";
 
 const useStyles = makeStyles(ResidentsMainPageStyles);

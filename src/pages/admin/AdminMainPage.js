@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import AdminAppBar from "../../components/AdminAppBar";
 import { useLocalStorageReducer } from "../../hooks/useLocalStorageReducer";
