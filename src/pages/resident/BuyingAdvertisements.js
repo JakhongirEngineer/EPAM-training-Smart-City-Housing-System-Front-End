@@ -135,6 +135,7 @@ function BuyingAdvertisements() {
             display: "flex",
             justifyContent: "center",
             alignItems: "flex-start",
+            flexWrap: "wrap",
           }}
         >
           {content}
