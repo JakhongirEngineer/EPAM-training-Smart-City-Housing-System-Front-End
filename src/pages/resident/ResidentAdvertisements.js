@@ -178,7 +178,7 @@ function ResidentAdvertisements() {
   } else {
     content =
       advertisements.length === 0 ? (
-        <Typography variant="h2">
+        <Typography variant="h2" style={{ fontSize: "1.2rem" }}>
           You don't have any advertisements yet
         </Typography>
       ) : (

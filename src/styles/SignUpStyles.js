@@ -27,7 +27,7 @@ const styles = (theme) => ({
 
     [theme.breakpoints.down("md")]: {
       width: "20rem",
-      height: "70vh",
+      height: "80vh",
     },
   },
   inputs: {
