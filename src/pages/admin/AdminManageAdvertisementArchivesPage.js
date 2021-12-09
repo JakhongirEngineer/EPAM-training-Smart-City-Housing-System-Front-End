@@ -46,20 +46,21 @@ function AdminManageAdvertisementArchivesPage() {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log("result: ", result.data);
       dispatchAdvertisementArchives({
-        type: "SET_ADVERTISEMENT_ARCHIVES",
+        type: "SET_ADVERTISEMENT_ARCHIVE",
         payload: result.data,
       });
     } catch (e) {
       setFetchingError(true);
     } finally {
-      console.log(advertisementArchives);
       setFetching(false);
     }
   };
 
   const deleteArchive = async (uuid) => {
     let result;
+    console.log("uuid in deleteArchive: ", uuid);
     try {
       setDeleting(true);
       result = await axios.delete(`/advertisementArchives/${uuid}`, {
@@ -68,12 +69,13 @@ function AdminManageAdvertisementArchivesPage() {
         },
       });
 
+      console.log("result delete: ", result);
+
       if (result.data) {
+        console.log("inside if result.data: ", result.data);
         dispatchAdvertisementArchives({
-          type: "SET_ADVERTISEMENT_ARCHIVES",
-          payload: advertisementArchives.filter(
-            (ar) => ar.advertisementArchiveUUID !== uuid
-          ),
+          type: "SET_ADVERTISEMENT_ARCHIVE",
+          payload: advertisementArchives.filter((ar) => ar.uuid !== uuid),
         });
       }
     } catch (e) {

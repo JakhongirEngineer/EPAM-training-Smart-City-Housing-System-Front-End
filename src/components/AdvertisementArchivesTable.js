@@ -18,6 +18,7 @@ function Row({ advertisementArchive, deleteArchive }) {
   const [open, setOpen] = React.useState(false);
 
   const handleDeleteArchive = (uuid) => {
+    console.log("uuid in handleDeleteArchive: ", uuid);
     deleteArchive(uuid);
   };
 
@@ -36,9 +37,7 @@ function Row({ advertisementArchive, deleteArchive }) {
         <TableCell component="th" scope="row">
           {advertisementArchive.title}
         </TableCell>
-        <TableCell align="right">
-          {advertisementArchive.advertisementArchiveUUID}
-        </TableCell>
+        <TableCell align="right">{advertisementArchive.uuid}</TableCell>
         <TableCell align="right">
           {advertisementArchive.moneyTransferUUID}
         </TableCell>
@@ -48,9 +47,7 @@ function Row({ advertisementArchive, deleteArchive }) {
         <TableCell align="right">
           <Delete
             style={{ cursor: "pointer" }}
-            onClick={() =>
-              handleDeleteArchive(advertisementArchive.advertisementArchiveUUID)
-            }
+            onClick={() => handleDeleteArchive(advertisementArchive.uuid)}
           />
         </TableCell>
       </TableRow>
@@ -103,7 +100,7 @@ function AdvertisementArchivesTable({ advertisementArchives, deleteArchive }) {
         <TableBody>
           {advertisementArchives.map((advertisementArchive) => (
             <Row
-              key={advertisementArchive.advertisementArchiveUUID}
+              key={advertisementArchive.uuid}
               advertisementArchive={advertisementArchive}
               deleteArchive={deleteArchive}
             />
