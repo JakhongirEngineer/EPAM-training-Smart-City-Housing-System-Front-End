@@ -92,6 +92,7 @@ function BuyingAdvertisements() {
     } finally {
       setStartProceedingToTransfer(false);
       setOpenRedirectDialog(true);
+      fetchAdvertisements(page);
     }
   };
 
