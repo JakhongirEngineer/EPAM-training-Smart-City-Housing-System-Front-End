@@ -91,12 +91,7 @@ function AdminManageAdvertisementArchivesPage() {
   let content = <div></div>;
 
   if (fetchingError) {
-    content = (
-      <div>
-        Error while fetching or there is not an advertisement archive in the
-        database
-      </div>
-    );
+    content = <h3>There is not an advertisement archive in the database</h3>;
   } else if (fetching) {
     content = <SkeletonPlaceholder />;
   } else if (!fetching && !fetchingError) {
